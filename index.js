@@ -1,4 +1,14 @@
-function generatePassword(length, lowCase, upperCase, numbers, symbols){
+
+function generatePassword(){
+
+    event.preventDefault();
+    // fetch values from the html
+    let length = Number(document.getElementById("length").value);
+    let lowCase = document.getElementById("lower").checked;
+    let upperCase = document.getElementById("upper").checked;
+    let numbers = document.getElementById("number").checked;
+    let symbols = document.getElementById("symbol").checked;
+    let result = document.getElementById("result");
 
     //possible options
     const lowerCaseOptions = "abcdefghijklmnopqrstuvwxyz";
@@ -17,12 +27,12 @@ function generatePassword(length, lowCase, upperCase, numbers, symbols){
 
     // return if the user input an invalid length or no options
     if (length <= 0){
-        window.prompt("The length of the password must be at least 1");
+        window.alert("The length of the password must be at least 1");
         return;
     }
 
     if (allowedchars.length == 0){
-        window.prompt("At least one of the options must be checked");
+        window.alert("At least one of the options must be checked");
         return;
     }
 
@@ -33,6 +43,6 @@ function generatePassword(length, lowCase, upperCase, numbers, symbols){
         password += allowedchars[random_index];
     }
 
-    return password;
+    result.textContent = `Generated password: ${password}`;
         
 }
